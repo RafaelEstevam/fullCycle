@@ -2,12 +2,26 @@ package repository
 
 import (
 	"database/sql"
+	"errors"
 
 	"github.com/RafaelEstevam/fullCycle/back-codebank/domain"
 )
 
 type TransactionRepositoryDb struct {
 	db *sql.DB
+}
+
+func (transactionRepositoryDb *TransactionRepositoryDb) GetCreditCard(creditCard domain.CreditCard) (domain.CreditCard, error) {
+	var cc domain.CreditCard
+	stmt, err := transactionRepositoryDb.db.Prepare(`select id, balance, balance_limit from credit_cards where number=$1`)
+	if err != nil {
+		return cc, err
+	}
+	if err = stmt.QueryRow(creditCard.Number).Scan(&cc.ID, &cc.Balance, &cc.Limit); err != nil {
+		return creditCard, errors.New("Credit card does not exists")
+	}
+
+	return creditCard, nil
 }
 
 func NewTransactionRepositoryDb(db *sql.DB) *TransactionRepositoryDb {
@@ -67,7 +81,7 @@ func (transactionRepositoryDb *TransactionRepositoryDb) CreateCreditCard(creditC
 	_, err = stmt.Exec(
 		creditCard.ID,
 		creditCard.Name,
-		creditCard.Numner,
+		creditCard.Number,
 		creditCard.ExpirationMonth,
 		creditCard.ExpirationYear,
 		creditCard.CVV,

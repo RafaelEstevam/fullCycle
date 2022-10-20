@@ -9,7 +9,7 @@ import (
 type CreditCard struct {
 	ID              string
 	Name            string
-	Numner          string
+	Number          string
 	ExpirationMonth int32
 	ExpirationYear  int32
 	CVV             int32

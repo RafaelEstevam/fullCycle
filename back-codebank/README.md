@@ -13,3 +13,6 @@ Enter on the container by name
 
 *go mod tidy*
 ???
+
+*go run main.go*
+Run on Go terminal in docker
