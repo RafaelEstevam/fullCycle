@@ -14,23 +14,23 @@ type Car struct {
 	Price float64
 }
 
-func main() {
+// func main() {
 
-	// carro := Car{"Punto", "Fiat"}
-	// carro.Andar()
+// 	// carro := Car{"Punto", "Fiat"}
+// 	// carro.Andar()
 
-	// result, err := soma(20, 2)
-	// fmt.Println(result, err)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-	generateCars()
-	e := echo.New()
-	e.GET("/cars", getCars)
-	e.POST("/cars", createCar)
-	e.Logger.Fatal(e.Start(":9876"))
+// 	// result, err := soma(20, 2)
+// 	// fmt.Println(result, err)
+// 	// if err != nil {
+// 	// 	fmt.Println(err)
+// 	// }
+// 	generateCars()
+// 	e := echo.New()
+// 	e.GET("/cars", getCars)
+// 	e.POST("/cars", createCar)
+// 	e.Logger.Fatal(e.Start(":9876"))
 
-}
+// }
 
 var cars []Car
 
